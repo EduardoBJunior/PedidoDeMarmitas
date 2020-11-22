@@ -1,19 +1,61 @@
 ﻿
 @{
-    
+
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-@using (Html.BeginForm("Gravar", "Fornecedor", FormMethod.Post))
-{
-    <div class="form-group">
-        <label>Nome </label>
-        <input class="form-control" placeholder="Digite aqui!" name="Nome" maxlength="100">
-        <label>Telefone </label>
-        <input class="form-control" placeholder="Digite aqui!" name="telefone" maxlength="11">
-        <label>Endereço </label>
-        <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100">
-        <hr>
-        <button type="submit" class="btn btn-success" name="Gravar">Cadastrar</button>
-    </div>
-}
 
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Fornecedores Cadastrados
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Nome da Fornecedor</th>
+                        <th>Ação</th>
+                        <th>Edereço</th>
+                        <th>Inativar</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.LstFornecedores)
+                    {
+                        <tr class="odd gradeX">
+                            <td>@item.nome_fornecedor</td>
+                            <td>@item.telefone_fornecedor</td>
+                            <td>@item.endereco_fornecedor</td>
+                            @if (@item.status_fornecedor == 1)
+                            {
+                                <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" checked> Ativo
+                                    </label>
+                                </td>
+                            }@if (@item.status_fornecedor == 0)
+                            {
+                                <td>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox"> Ativo
+                                    </label>
+                                </td>
+                            }
+
+                            <td> <button type="submit"class="btn btn-warning" name="Alterar">Alterar</button></td>
+                            
+
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

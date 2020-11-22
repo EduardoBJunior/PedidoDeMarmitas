@@ -1,8 +1,23 @@
 ﻿
 @{
-  
+
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
 
 
+@using (Html.BeginForm("Gravar", "Produtos", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Codigo </label>
+        <input class="form-control" placeholder="Digite aqui!" name="codigo" maxlength="14">
+        <label>Nome </label>
+        <input class="form-control" placeholder="Digite aqui!" name="nome" maxlength="100">
+        <label>Valor </label>
+        <input class="form-control" placeholder="Digite aqui!" name="valor" maxlength="10">
+        <hr>
+
+        <button type="submit" class="btn btn-success" name="Gravar">Cadastrar</button>
+
+    </div>
+}

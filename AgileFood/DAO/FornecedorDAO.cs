@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-
-
+using System.Runtime;
 
 namespace DAO
 {
@@ -33,5 +32,12 @@ namespace DAO
             objResgate.status_fornecedor = objForneAtualizado.status_fornecedor;
         }
 
+        public List<tb_fornecedor> ConsultarFornecedores()
+        {
+            AgileFoodEntities objBanco = new AgileFoodEntities();
+            List <tb_fornecedor> LstRetorno = objBanco.tb_fornecedor.ToList();
+
+            return LstRetorno;
+        }
     }
 }

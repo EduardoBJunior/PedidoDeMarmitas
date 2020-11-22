@@ -3,21 +3,24 @@
 
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-@using (Html.BeginForm("Alterar", "Fornecedor", FormMethod.Post))
-{
-    <div class="form-group">
-        <label>Nome </label>
-        <input class="form-control" placeholder="Digite aqui!" name="Nome" maxlength="100">
-        <label>Telefone </label>
-        <input class="form-control" placeholder="Digite aqui!" name="telefone" maxlength="11">
-        <label>Endereço </label>
-        <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100">
-        <hr>
-        <div class="checkbox">
-            <label><input type="checkbox" value="1" checked>Ativo</label>
+
+    
+    @using (Html.BeginForm("Alterar", "Fornecedor", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Nome </label>
+            <input class="form-control" placeholder="Digite aqui!" name="Nome" maxlength="100">
+            <label>Telefone </label>
+            <input class="form-control" placeholder="Digite aqui!" name="telefone" maxlength="11">
+            <label>Endereço </label>
+            <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100">
+            <hr>
+            
+            <div class="checkbox">
+                <label><input name="status" type="checkbox" value="1" checked="checked" >Ativo</label>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-success" name="Gravar">Cadastrar</button>
         </div>
-        <hr>
-        <button type="submit" class="btn btn-success" name="Gravar">Cadastrar</button>
-    </div>
-}
+     }
 

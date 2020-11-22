@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.ComponentModel;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls.Expressions;
 
 namespace AgiliFood.Controllers
 {
@@ -42,6 +46,13 @@ namespace AgiliFood.Controllers
             return View();
         }
 
+        public ActionResult Consultar()
+        {
+            MontarTitulo(3);
+            CarregarFornecedores();
+            return View();
+        }
+
         public ActionResult Gravar(string Nome, string telefone, string endereco)
         {
             if (Nome.Trim() == "" || telefone.Trim() =="" || endereco.Trim() =="" )
@@ -76,10 +87,36 @@ namespace AgiliFood.Controllers
             MontarTitulo(1);
             return View("Cadastrar"); 
         }
+         public void CarregarFornecedores()
+        {
+            FornecedorDAO objDao = new FornecedorDAO();
+            List<tb_fornecedor> lst = objDao.ConsultarFornecedores();
+            
+            
+            ViewBag.LstFornecedores = lst;
+        }
 
         public ActionResult Alterar(tb_fornecedor objFornAtualizado)
         {
-            
+            if (objFornAtualizado.nome_fornecedor.Trim() == "" || objFornAtualizado.telefone_fornecedor.Trim() == "" || objFornAtualizado.endereco_fornecedor.Trim() == "")
+            {
+                ViewBag.ret = 0;
+                ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
+            }
+            //if (objFornAtualizado.status_fornecedor != HtmlInputCheckBox)
+            //{
+            //    ViewBag.ret = 0;
+            //    ViewBag.msg = Mensagens.Msg.MsgInativarFornecedor;
+            //    objFornAtualizado.status_fornecedor = 0;
+            //}
+
+            AgileFoodEntities objBanco = new AgileFoodEntities();
+
+            tb_fornecedor objResgate = objBanco.tb_fornecedor.Where(forn => forn.id_fornecedor == objFornAtualizado.id_fornecedor).FirstOrDefault();
+
+            objBanco.SaveChanges();
+
+            return View("Alterar");
         }
     }
 }

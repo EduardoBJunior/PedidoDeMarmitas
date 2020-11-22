@@ -29,7 +29,7 @@ namespace DAO
         public virtual DbSet<tb_cardapio> tb_cardapio { get; set; }
         public virtual DbSet<tb_funcionario> tb_funcionario { get; set; }
         public virtual DbSet<tb_pedidos> tb_pedidos { get; set; }
-        public virtual DbSet<tb_produto> tb_produto { get; set; }
         public virtual DbSet<tb_fornecedor> tb_fornecedor { get; set; }
+        public virtual DbSet<tb_produto> tb_produto { get; set; }
     }
 }

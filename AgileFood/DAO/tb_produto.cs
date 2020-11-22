@@ -24,6 +24,7 @@ namespace DAO
         public string codigo_produto { get; set; }
         public string nome_produto { get; set; }
         public Nullable<decimal> preco_produto { get; set; }
+        public Nullable<int> status_produto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_cardapio> tb_cardapio { get; set; }

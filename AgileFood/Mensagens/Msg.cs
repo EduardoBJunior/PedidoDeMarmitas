@@ -15,5 +15,7 @@ namespace Mensagens
 
         public static string MensagemErroExclusão = "Não Foi Possivel Excluior o registro poi ele esta em uso!";
         public static string MensagemCampoObg = "Favor preencher o(s) campo(s) Obrigatorio(s)";
+
+        public static string MsgInativarFornecedor = "Ao desativar a opção de Ativo, o Fornecedor ficará inativo para pedidos";
     }
 }
