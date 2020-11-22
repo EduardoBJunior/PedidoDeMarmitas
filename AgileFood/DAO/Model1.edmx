@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AgileFoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_cardapio">
+          <Key>
+            <PropertyRef Name="id_cardapio" />
+          </Key>
+          <Property Name="id_cardapio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_fornecedor" Type="int" />
+          <Property Name="id_Produto" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_fornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_fornecedor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefone_fornecedor" Type="varchar" MaxLength="11" />
+          <Property Name="endereco_fornecedor" Type="varchar" MaxLength="100" />
+          <Property Name="status_fornecedor" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome_funcionario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefone_funcionario" Type="varchar" MaxLength="11" />
+          <Property Name="endereco_funcionario" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tb_pedidos">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_produto" Type="int" />
+          <Property Name="qtProdu_pedidos" Type="int" />
+          <Property Name="valorTotal_pedido" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_funcionario" Type="int" />
+          <Property Name="id_cardapio" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_produto" Type="varchar" MaxLength="14" />
+          <Property Name="nome_produto" Type="varchar" MaxLength="100" />
+          <Property Name="preco_produto" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Cardapio">
+          <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="0..1" />
+          <End Role="tb_pedidos" Type="Self.tb_pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cardapio">
+              <PropertyRef Name="id_cardapio" />
+            </Principal>
+            <Dependent Role="tb_pedidos">
+              <PropertyRef Name="id_cardapio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fornecedor">
+          <End Role="tb_fornecedor" Type="Self.tb_fornecedor" Multiplicity="0..1" />
+          <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tb_cardapio">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="0..1" />
+          <End Role="tb_pedidos" Type="Self.tb_pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_pedidos">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produto">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="0..1" />
+          <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_cardapio">
+              <PropertyRef Name="id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgileFoodModelStoreContainer">
+          <EntitySet Name="tb_cardapio" EntityType="Self.tb_cardapio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_fornecedor" EntityType="Self.tb_fornecedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_funcionario" EntityType="Self.tb_funcionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_pedidos" EntityType="Self.tb_pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_produto" EntityType="Self.tb_produto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cardapio" Association="Self.FK_Cardapio">
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+            <End Role="tb_pedidos" EntitySet="tb_pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fornecedor" Association="Self.FK_Fornecedor">
+            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario" Association="Self.FK_Funcionario">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_pedidos" EntitySet="tb_pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produto" Association="Self.FK_Produto">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgileFoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_cardapio">
+          <Key>
+            <PropertyRef Name="id_cardapio" />
+          </Key>
+          <Property Name="id_cardapio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_fornecedor" Type="Int32" />
+          <Property Name="id_Produto" Type="Int32" />
+          <NavigationProperty Name="tb_pedidos" Relationship="Self.FK_Cardapio" FromRole="tb_cardapio" ToRole="tb_pedidos" />
+          <NavigationProperty Name="tb_produto" Relationship="Self.FK_Produto" FromRole="tb_cardapio" ToRole="tb_produto" />
+          <NavigationProperty Name="tb_fornecedor" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_cardapio" ToRole="tb_fornecedor" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_funcionario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone_funcionario" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="endereco_funcionario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_pedidos" Relationship="Self.FK_Funcionario" FromRole="tb_funcionario" ToRole="tb_pedidos" />
+        </EntityType>
+        <EntityType Name="tb_pedidos">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_produto" Type="Int32" />
+          <Property Name="qtProdu_pedidos" Type="Int32" />
+          <Property Name="valorTotal_pedido" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_funcionario" Type="Int32" />
+          <Property Name="id_cardapio" Type="Int32" />
+          <NavigationProperty Name="tb_cardapio" Relationship="Self.FK_Cardapio" FromRole="tb_pedidos" ToRole="tb_cardapio" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.FK_Funcionario" FromRole="tb_pedidos" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_produto" Type="String" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="nome_produto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="preco_produto" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tb_cardapio" Relationship="Self.FK_Produto" FromRole="tb_produto" ToRole="tb_cardapio" />
+        </EntityType>
+        <Association Name="FK_Cardapio">
+          <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="0..1" />
+          <End Role="tb_pedidos" Type="Self.tb_pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cardapio">
+              <PropertyRef Name="id_cardapio" />
+            </Principal>
+            <Dependent Role="tb_pedidos">
+              <PropertyRef Name="id_cardapio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produto">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="0..1" />
+          <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_cardapio">
+              <PropertyRef Name="id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Funcionario">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="0..1" />
+          <End Role="tb_pedidos" Type="Self.tb_pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_pedidos">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgileFoodEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="tb_cardapio" EntityType="Self.tb_cardapio" />
+          <EntitySet Name="tb_funcionario" EntityType="Self.tb_funcionario" />
+          <EntitySet Name="tb_pedidos" EntityType="Self.tb_pedidos" />
+          <EntitySet Name="tb_produto" EntityType="Self.tb_produto" />
+          <AssociationSet Name="FK_Cardapio" Association="Self.FK_Cardapio">
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+            <End Role="tb_pedidos" EntitySet="tb_pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produto" Association="Self.FK_Produto">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Funcionario" Association="Self.FK_Funcionario">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_pedidos" EntitySet="tb_pedidos" />
+          </AssociationSet>
+          <EntitySet Name="tb_fornecedor" EntityType="AgileFoodModel.tb_fornecedor" />
+          <AssociationSet Name="FK_Fornecedor" Association="AgileFoodModel.FK_Fornecedor">
+            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_fornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_fornecedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefone_fornecedor" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="endereco_fornecedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status_fornecedor" Type="Int32" />
+          <NavigationProperty Name="tb_cardapio" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_fornecedor" ToRole="tb_cardapio" />
+        </EntityType>
+        <Association Name="FK_Fornecedor">
+          <End Type="AgileFoodModel.tb_fornecedor" Role="tb_fornecedor" Multiplicity="0..1" />
+          <End Type="AgileFoodModel.tb_cardapio" Role="tb_cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tb_cardapio">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AgileFoodModelStoreContainer" CdmEntityContainer="AgileFoodEntities">
+          <EntitySetMapping Name="tb_cardapio">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_cardapio">
+              <MappingFragment StoreEntitySet="tb_cardapio">
+                <ScalarProperty Name="id_cardapio" ColumnName="id_cardapio" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="id_Produto" ColumnName="id_Produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_funcionario">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_funcionario">
+              <MappingFragment StoreEntitySet="tb_funcionario">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="nome_funcionario" ColumnName="nome_funcionario" />
+                <ScalarProperty Name="telefone_funcionario" ColumnName="telefone_funcionario" />
+                <ScalarProperty Name="endereco_funcionario" ColumnName="endereco_funcionario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pedidos">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_pedidos">
+              <MappingFragment StoreEntitySet="tb_pedidos">
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="qtProdu_pedidos" ColumnName="qtProdu_pedidos" />
+                <ScalarProperty Name="valorTotal_pedido" ColumnName="valorTotal_pedido" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="id_cardapio" ColumnName="id_cardapio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_produto">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_produto">
+              <MappingFragment StoreEntitySet="tb_produto">
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="codigo_produto" ColumnName="codigo_produto" />
+                <ScalarProperty Name="nome_produto" ColumnName="nome_produto" />
+                <ScalarProperty Name="preco_produto" ColumnName="preco_produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_fornecedor">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_fornecedor">
+              <MappingFragment StoreEntitySet="tb_fornecedor">
+                <ScalarProperty Name="status_fornecedor" ColumnName="status_fornecedor" />
+                <ScalarProperty Name="endereco_fornecedor" ColumnName="endereco_fornecedor" />
+                <ScalarProperty Name="telefone_fornecedor" ColumnName="telefone_fornecedor" />
+                <ScalarProperty Name="nome_fornecedor" ColumnName="nome_fornecedor" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

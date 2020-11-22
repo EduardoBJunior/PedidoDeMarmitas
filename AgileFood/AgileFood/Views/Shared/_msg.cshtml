@@ -1,0 +1,27 @@
+﻿@if (ViewBag.Ret != null)
+{
+    int ret = Convert.ToInt32(ViewBag.Ret);
+
+
+    switch (ret)
+    {
+        case 0:
+            <div class="alert alert-warning">
+                @ViewBag.Msg
+            </div>
+            break;
+
+        case -1:
+            <div class="alert alert-danger">
+                @ViewBag.Msg
+            </div>
+            break;
+
+        case 1:
+            <div class="alert alert-success">
+                @ViewBag.Msg
+
+            </div>
+            break;
+    }
+}

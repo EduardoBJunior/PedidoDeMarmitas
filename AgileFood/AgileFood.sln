@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidoDeMarmita", "AgileFood\PedidoDeMarmita.csproj", "{EC3FCE3D-8EEC-4B9C-A87C-A28CEB852B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mensagens", "Mensagens\Mensagens.csproj", "{279DAF3F-998D-4DF1-9419-75A59477D89D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{DE57DD37-85B4-4287-A7F3-C9EDBDC256EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC3FCE3D-8EEC-4B9C-A87C-A28CEB852B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC3FCE3D-8EEC-4B9C-A87C-A28CEB852B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC3FCE3D-8EEC-4B9C-A87C-A28CEB852B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC3FCE3D-8EEC-4B9C-A87C-A28CEB852B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{279DAF3F-998D-4DF1-9419-75A59477D89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{279DAF3F-998D-4DF1-9419-75A59477D89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{279DAF3F-998D-4DF1-9419-75A59477D89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{279DAF3F-998D-4DF1-9419-75A59477D89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE57DD37-85B4-4287-A7F3-C9EDBDC256EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE57DD37-85B4-4287-A7F3-C9EDBDC256EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE57DD37-85B4-4287-A7F3-C9EDBDC256EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE57DD37-85B4-4287-A7F3-C9EDBDC256EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE34EAE4-80B9-4432-97E2-AFF473234F59}
+	EndGlobalSection
+EndGlobal
