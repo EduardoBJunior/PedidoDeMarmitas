@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    class ProdutoDAO
+    public class ProdutoDAO
     {
 
         public void InserirProduto(tb_produto ObjProd)
@@ -18,19 +18,19 @@ namespace DAO
             objBanco.SaveChanges();
         }
 
-        public void AlterarFornecedor(tb_produto objForneAtualizado)
+        public void AlterarProduto(tb_produto objForneAtualizado)
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_produto objResgate = objBanco.tb_produto.Where(forn => forn.id_fornecedor == objForneAtualizado.id_fornecedor).FirstOrDefault();
+            tb_produto objResgate = objBanco.tb_produto.Where(forn => forn.id_produto == objForneAtualizado.id_produto).FirstOrDefault();
 
-            objResgate.nome_produto = objForneAtualizado.nome_fornecedor;
-            objResgate.codigo_produto = objForneAtualizado.telefone_fornecedor;
-            objResgate.preco_produto = objForneAtualizado.endereco_fornecedor;
-            objResgate.status_produto = objForneAtualizado.status_fornecedor;
+            objResgate.nome_produto = objForneAtualizado.nome_produto;
+            objResgate.codigo_produto = objForneAtualizado.codigo_produto;
+            objResgate.preco_produto = objForneAtualizado.preco_produto;
+            objResgate.status_produto = objForneAtualizado.status_produto;
         }
 
-        public List<tb_produto> ConsultarFornecedores()
+        public List<tb_produto> ConsultarProduto()
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
             List<tb_produto> LstRetorno = objBanco.tb_produto.ToList();

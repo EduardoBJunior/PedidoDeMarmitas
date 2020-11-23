@@ -1,0 +1,64 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Fornecedores Cadastrados
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Nome da Fornecedor</th>
+                        <th>Ação</th>
+                        <th>Edereço</th>
+                        <th>Inativar</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.LstProdutos)
+                    {
+                    <tr class="odd gradeX">
+                        <td>@item.codigo_produto</td>
+                        <td>@item.nome_produto</td>
+                        <td>@item.preco_produto</td>
+                        @if (@item.status_produto == 1)
+                        {
+                            <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" checked> Ativo
+                                </label>
+                            </td>
+                        }@if (@item.status_produto == 0)
+                        {
+                            <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"> Ativo
+                                </label>
+                            </td>
+                        }
+
+                        <td>
+                        <td><a href="" class="btn btn-warning">Alterar</a></td></td>
+
+
+
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+

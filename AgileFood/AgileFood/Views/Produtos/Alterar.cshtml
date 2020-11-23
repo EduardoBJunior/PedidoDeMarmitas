@@ -1,0 +1,26 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+@using (Html.BeginForm("Alterar", "Produtos", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Codigo </label>
+        <input class="form-control" placeholder="Digite aqui!" name="codigo" maxlength="14">
+        <label>Nome </label>
+        <input class="form-control" placeholder="Digite aqui!" name="nome" maxlength="100">
+        <label>Preço </label>
+        <input class="form-control" placeholder="Digite aqui!" name="preco" maxlength="18">
+        <hr>
+
+        <div class="checkbox">
+            <label><input name="status" type="checkbox" value="1" checked="checked">Ativo</label>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-success" name="Gravar">Alterar</button>
+    </div>
+}
+
+

@@ -40,13 +40,14 @@ namespace AgiliFood.Controllers
             MontarTitulo(1);
             return View();
         }
-        public ActionResult Alterar()
+        public ActionResult Alterar(tb_fornecedor objForneceRecuperado)
         {
             MontarTitulo(2);
+            Alterar(objForneceRecuperado);
             return View();
         }
 
-        public ActionResult Consultar()
+        public ActionResult ConsultarFornecedor()
         {
             MontarTitulo(3);
             CarregarFornecedores();

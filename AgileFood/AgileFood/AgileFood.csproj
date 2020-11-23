@@ -121,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\FornecedorContext.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,7 +151,10 @@
     <Content Include="Views\Shared\_msg.cshtml" />
     <Content Include="Views\Shared\_topo.cshtml" />
     <Content Include="Views\Fornecedor\Alterar.cshtml" />
-    <Content Include="Views\Fornecedor\Consultar.cshtml" />
+    <Content Include="Views\Fornecedor\ConsultarFornecedor.cshtml" />
+    <Content Include="Views\Produtos\Consultar.cshtml" />
+    <Content Include="Views\Produtos\Alterar.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -162,7 +166,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cardapio\" />
     <Folder Include="Views\Funcionario\" />
-    <Folder Include="Views\Home\" />
     <Folder Include="Views\RhFinanceiro\" />
   </ItemGroup>
   <ItemGroup>

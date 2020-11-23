@@ -1,5 +1,6 @@
 ﻿using DAO;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,13 +25,13 @@ namespace AgiliFood.Controllers
                     break;
                 case 3:
                     ViewBag.Titulo = "Consultar Produto";
-                    ViewBag.Subtitulo = "Aqui poderá consultar os fornecedores cadastrados e cadastrar os Produto";
+                    ViewBag.Subtitulo = "Aqui poderá consultar os Produtos cadastrados e cadastrar os Produto";
                     break;
             }
         }
 
-        // GET: Fornecedor
-        public ActionResult Cadastrar()
+        // GET: Produtos
+        public ActionResult Cadastro()
         {
             MontarTitulo(1);
             return View();
@@ -44,13 +45,13 @@ namespace AgiliFood.Controllers
         public ActionResult Consultar()
         {
             MontarTitulo(3);
-            CarregarFornecedores();
+            CarregarProdutos();
             return View();
         }
 
-        public ActionResult Gravar(string Nome, string telefone, string endereco)
+        public ActionResult Gravar(string codigo, string nome, string preco)
         {
-            if (Nome.Trim() == "" || telefone.Trim() == "" || endereco.Trim() == "")
+            if (codigo.Trim() == "" || nome.Trim() == "" || preco == "" || preco =="0")
             {
                 ViewBag.ret = 0;
                 ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
@@ -59,16 +60,16 @@ namespace AgiliFood.Controllers
             {
 
                 tb_produto objProduto = new tb_produto();
-                FornecedorDAO ObjDao = new FornecedorDAO();
+                ProdutoDAO objDao = new ProdutoDAO();
 
-                objFornecedor.nome_fornecedor = Nome;
-                objFornecedor.telefone_fornecedor = telefone;
-                objFornecedor.endereco_fornecedor = endereco;
-                objFornecedor.status_fornecedor = 1;
+                objProduto.codigo_produto= codigo;
+                objProduto.nome_produto = nome ;
+                objProduto.preco_produto = Convert.ToDecimal(preco);
+                objProduto.status_produto = 1;
 
                 try
                 {
-                    ObjDao.InserirFornecedor(objFornecedor);
+                    objDao.InserirProduto(objProduto);
                     ViewBag.Ret = 1;
                     ViewBag.Msg = Mensagens.Msg.MsgSucesso;
                 }
@@ -80,20 +81,20 @@ namespace AgiliFood.Controllers
                 }
             }
             MontarTitulo(1);
-            return View("Cadastrar");
+            return View("Cadastro");
         }
-        public void CarregarFornecedores()
+        public void CarregarProdutos()
         {
-            FornecedorDAO objDao = new FornecedorDAO();
-            List<tb_fornecedor> lst = objDao.ConsultarFornecedores();
+            ProdutoDAO objDao = new ProdutoDAO();
+            List<tb_produto> lst = objDao.ConsultarProduto();
 
 
-            ViewBag.LstFornecedores = lst;
+            ViewBag.LstProdutos = lst;
         }
 
-        public ActionResult Alterar(tb_fornecedor objFornAtualizado)
+        public ActionResult AlterarProduto(tb_produto objProdAtualizado)
         {
-            if (objFornAtualizado.nome_fornecedor.Trim() == "" || objFornAtualizado.telefone_fornecedor.Trim() == "" || objFornAtualizado.endereco_fornecedor.Trim() == "")
+            if (objProdAtualizado.codigo_produto.Trim() == "" || objProdAtualizado.nome_produto.Trim() == "" || objProdAtualizado.preco_produto == 0)
             {
                 ViewBag.ret = 0;
                 ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
@@ -104,10 +105,24 @@ namespace AgiliFood.Controllers
             //    ViewBag.msg = Mensagens.Msg.MsgInativarFornecedor;
             //    objFornAtualizado.status_fornecedor = 0;
             //}
-
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_fornecedor objResgate = objBanco.tb_fornecedor.Where(forn => forn.id_fornecedor == objFornAtualizado.id_fornecedor).FirstOrDefault();
+            tb_produto objResgate = objBanco.tb_produto.Where(prod => prod.id_produto == objProdAtualizado.id_produto).FirstOrDefault();
+
+
+            try
+            {
+              
+                objBanco.SaveChanges();
+                ViewBag.Ret = 1;
+                ViewBag.Msg = Mensagens.Msg.MsgSucesso;
+            }
+            catch (Exception)
+            {
+                ViewBag.Ret = -1;
+                ViewBag.Msg = Mensagens.Msg.MsgErro;
+            }
+         
 
             objBanco.SaveChanges();
 
@@ -116,5 +131,3 @@ namespace AgiliFood.Controllers
     }
 }
       
-    }
-}
