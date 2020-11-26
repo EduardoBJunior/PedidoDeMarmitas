@@ -104,6 +104,7 @@
     <Content Include="assets\img\3.png" />
     <Content Include="assets\img\4.png" />
     <Content Include="assets\img\find_user.png" />
+    <Content Include="assets\img\logo.png" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\custom.js" />
     <Content Include="assets\js\dataTables\dataTables.bootstrap.css" />

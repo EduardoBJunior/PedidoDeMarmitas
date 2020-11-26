@@ -2,7 +2,7 @@
     <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
             <li class="text-center">
-                <img src="assets/img/find_user.png" class="user-image img-responsive">
+                <img src="~/assets/img/logo.png" class="user-image img-responsive">
             </li>
 
 
@@ -10,18 +10,34 @@
             <li>
                 <a href="#"><i class="fa fa-sitemap fa-3x"></i> Cadastros <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
+
                     <li>
-                        <a href="#">Funcionario</a>
+                        <a href="#">Colaboradores<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level collapse">
+                            <li>
+                                <a href="~/Fornecedor/ConsultarFornecedor">Consultar</a>
+                            </li>
+                            <li>
+                                <a href="~/Fornecedor/Cadastrar">Cadastrar</a>
+                            </li>
+                            <li>
+                                <a href="~/Produtos/Cadastro">Cadastro Produtos</a>
+                            </li>
+                        </ul>
+
                     </li>
-                    
+
                     <li>
                         <a href="#">Fornecedor<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level collapse">
                             <li>
-                                @Html.ActionLink("Fornecedor","ConsultarFornecedor","ConsultarFornecedor");
+                                <a href="~/Fornecedor/ConsultarFornecedor">Consultar</a>
                             </li>
                             <li>
-                                <a href="#">Cadastro Mercadorias</a>
+                                <a href="~/Fornecedor/Cadastrar">Cadastrar</a>
+                            </li>
+                            <li>
+                                <a href="~/Produtos/Cadastro">Cadastro Produtos</a>
                             </li>
                         </ul>
 

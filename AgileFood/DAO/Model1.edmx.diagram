@@ -5,15 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="46f4e024867d49b18ac089d7ce0182b2" Name="Diagram1">
-        <EntityTypeShape EntityType="AgileFoodModel.tb_cardapio" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgileFoodModel.tb_funcionario" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgileFoodModel.tb_pedidos" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="AgileFoodModel.FK_Cardapio" ManuallyRouted="false" />
-        <AssociationConnector Association="AgileFoodModel.FK_Funcionario" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="AgileFoodModel.tb_fornecedor" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_cardapio" Width="1.5" PointX="6.25" PointY="4.375" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_fornecedor" Width="1.5" PointX="4" PointY="4.25" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_funcionario" Width="1.5" PointX="4" PointY="1.125" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_pedidos" Width="1.5" PointX="8.5" PointY="2.625" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_pessoa" Width="1.5" PointX="1.75" PointY="2.875" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_produto" Width="1.5" PointX="4" PointY="8.375" />
+        <AssociationConnector Association="AgileFoodModel.FK_Cardapio" />
         <AssociationConnector Association="AgileFoodModel.FK_Fornecedor" />
-        <EntityTypeShape EntityType="AgileFoodModel.tb_produto" Width="1.5" PointX="0.625" PointY="4.625" />
         <AssociationConnector Association="AgileFoodModel.FK_Produto" />
+        <AssociationConnector Association="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" />
+        <AssociationConnector Association="AgileFoodModel.FK_Funcionario" />
+        <AssociationConnector Association="AgileFoodModel.FK_tb_funcionario_tb_pessoa" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

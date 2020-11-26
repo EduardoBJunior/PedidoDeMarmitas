@@ -7,20 +7,29 @@
     
     @using (Html.BeginForm("Alterar", "Fornecedor", FormMethod.Post))
     {
-        <div class="form-group">
-            <label>Nome </label>
-            <input class="form-control" placeholder="Digite aqui!" name="Nome" maxlength="100">
-            <label>Telefone </label>
-            <input class="form-control" placeholder="Digite aqui!" name="telefone" maxlength="11">
-            <label>Endereço </label>
-            <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100">
-            <hr>
-            
+    <div class="form-group">
+        <input class="form-control" name="cod" value="@ViewBag.cod" />
+        <label>Nome </label>
+        <input class="form-control" placeholder="Digite aqui!" name="nome" maxlength="100" value="@ViewBag.nome">
+        <label>Telefone </label>
+        <input class="form-control" placeholder="Digite aqui!" name="telelefone" maxlength="11" value="@ViewBag.telefone">
+        <label>Endereço </label>
+        <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100" value="@ViewBag.endereco">
+        <hr>
+        @if (ViewBag.ativo == "0")
+        {
             <div class="checkbox">
-                <label><input name="status" type="checkbox" value="1" checked="checked" >Ativo</label>
+                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo">Ativo</label>
             </div>
-            <hr>
-            <button type="submit" class="btn btn-success" name="Gravar">Cadastrar</button>
-        </div>
+        }@if (ViewBag.ativo == "1")
+        {
+            <div class="checkbox">
+                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo" checked>Ativo</label>
+            </div>
+        }
+
+        <hr>
+        <button type="submit" class="btn btn-success" name="Atualizar">Salvar</button>
+    </div>
      }
 

@@ -33,20 +33,20 @@
                         {
                             <td>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" checked> Ativo
+                                    <input type="checkbox" checked onclick="return false"> Ativo
                                 </label>
                             </td>
                         }@if (@item.status_produto == 0)
                         {
                             <td>
                                 <label class="checkbox-inline">
-                                    <input type="checkbox"> Ativo
+                                    <input type="checkbox" onclick="return false"> Ativo
                                 </label>
                             </td>
                         }
 
                         <td>
-                        <td><a href="" class="btn btn-warning">Alterar</a></td></td>
+                        <td><a href="~/Produtos/Alterar?cod=@item.id_produto&codigo=@item.codigo_produto&preco=@item.preco_produto&status=@item.status_produto" class="btn btn-warning">Alterar</a></td>
 
 
 

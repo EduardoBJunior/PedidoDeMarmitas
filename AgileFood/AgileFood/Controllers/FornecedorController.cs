@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.ComponentModel;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls.Expressions;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AgiliFood.Controllers
 {
@@ -40,10 +41,15 @@ namespace AgiliFood.Controllers
             MontarTitulo(1);
             return View();
         }
-        public ActionResult Alterar(tb_fornecedor objForneceRecuperado)
+        public ActionResult Alterar(string cod, string nome, string telefone,string endereco,string ativo)
         {
             MontarTitulo(2);
-            Alterar(objForneceRecuperado);
+
+            @ViewBag.cod = cod;
+            @ViewBag.nome = nome;
+            @ViewBag.telefone = telefone;
+            @ViewBag.endereco = endereco;
+            @ViewBag.ativo = ativo;
             return View();
         }
 
@@ -97,27 +103,44 @@ namespace AgiliFood.Controllers
             ViewBag.LstFornecedores = lst;
         }
 
-        public ActionResult Alterar(tb_fornecedor objFornAtualizado)
+        public ActionResult Atualizar(string cod, string nome, string tel, string end,string ativo)
         {
-            if (objFornAtualizado.nome_fornecedor.Trim() == "" || objFornAtualizado.telefone_fornecedor.Trim() == "" || objFornAtualizado.endereco_fornecedor.Trim() == "")
+
+            tb_fornecedor objFornAtualizado = new tb_fornecedor();
+
+            objFornAtualizado.id_fornecedor = Convert.ToInt32(cod);
+            objFornAtualizado.nome_fornecedor = nome;
+            objFornAtualizado.telefone_fornecedor = tel;
+            objFornAtualizado.endereco_fornecedor = end;
+            objFornAtualizado.status_fornecedor = Convert.ToInt32(ativo);
+
+            if (cod == null )
             {
-                ViewBag.ret = 0;
-                ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
+                MontarTitulo(3);
+                ViewBag.Ret = -1;
+                ViewBag.Msg = Mensagens.Msg.MensagemCampoObg;
             }
-            //if (objFornAtualizado.status_fornecedor != HtmlInputCheckBox)
-            //{
-            //    ViewBag.ret = 0;
-            //    ViewBag.msg = Mensagens.Msg.MsgInativarFornecedor;
-            //    objFornAtualizado.status_fornecedor = 0;
-            //}
+            else
+            {
+                if (objFornAtualizado.nome_fornecedor.Trim() == "" || objFornAtualizado.telefone_fornecedor.Trim() == "" || objFornAtualizado.endereco_fornecedor.Trim() == "")
+                {
+                    ViewBag.Rwilet = 0;
+                    ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
+                }
 
-            AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_fornecedor objResgate = objBanco.tb_fornecedor.Where(forn => forn.id_fornecedor == objFornAtualizado.id_fornecedor).FirstOrDefault();
+                AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            objBanco.SaveChanges();
+                tb_fornecedor objResgate = objBanco.tb_fornecedor.Where(forn => forn.id_fornecedor == objFornAtualizado.id_fornecedor).FirstOrDefault();
 
-            return View("Alterar");
+                objBanco.SaveChanges();
+
+                ViewBag.Ret = 1;
+                ViewBag.Msg = Mensagens.Msg.MsgSucesso;
+
+            }
+
+            return View("ConsultarFornecedor");
         }
     }
 }
