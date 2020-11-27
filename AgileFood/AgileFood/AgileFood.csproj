@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\FornecedorContext.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
+    <Compile Include="Controllers\FuncionarioController .cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +157,9 @@
     <Content Include="Views\Produtos\Consultar.cshtml" />
     <Content Include="Views\Produtos\Alterar.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Funcionario\Alterar.cshtml" />
+    <Content Include="Views\Funcionario\Cadastrar.cshtml" />
+    <Content Include="Views\Funcionario\ConsultarFuncionanrio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -166,7 +170,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cardapio\" />
-    <Folder Include="Views\Funcionario\" />
     <Folder Include="Views\RhFinanceiro\" />
   </ItemGroup>
   <ItemGroup>

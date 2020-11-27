@@ -24,9 +24,11 @@ namespace DAO
         public string nome_fornecedor { get; set; }
         public string telefone_fornecedor { get; set; }
         public string endereco_fornecedor { get; set; }
+        public Nullable<int> id_pessoa { get; set; }
         public Nullable<int> status_fornecedor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_cardapio> tb_cardapio { get; set; }
+        public virtual tb_pessoa tb_pessoa { get; set; }
     }
 }

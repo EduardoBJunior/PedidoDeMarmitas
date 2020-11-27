@@ -9,7 +9,7 @@ namespace DAO
     public class ProdutoDAO
     {
 
-        public void InserirProduto(tb_produto ObjProd)
+         public void InserirProduto(tb_produto ObjProd)
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
@@ -18,22 +18,25 @@ namespace DAO
             objBanco.SaveChanges();
         }
 
-        public void AlterarProduto(tb_produto objForneAtualizado)
+        public void AlterarProduto(tb_produto objProdAtualizado)
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_produto objResgate = objBanco.tb_produto.Where(forn => forn.id_produto == objForneAtualizado.id_produto).FirstOrDefault();
+            tb_produto objResgate = objBanco.tb_produto.Where(prod => prod.id_produto == objProdAtualizado.id_produto).FirstOrDefault();
 
-            objResgate.nome_produto = objForneAtualizado.nome_produto;
-            objResgate.codigo_produto = objForneAtualizado.codigo_produto;
-            objResgate.preco_produto = objForneAtualizado.preco_produto;
-            objResgate.status_produto = objForneAtualizado.status_produto;
+            objResgate.id_produto = objProdAtualizado.id_produto;
+            objResgate.nome_produto = objProdAtualizado.nome_produto;
+            objResgate.codigo_produto = objProdAtualizado.codigo_produto;
+            objResgate.preco_produto = objProdAtualizado.preco_produto;
+            objResgate.status_produto = objProdAtualizado.status_produto;
+
+            objBanco.SaveChanges();
         }
 
         public List<tb_produto> ConsultarProduto()
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
-            List<tb_produto> LstRetorno = objBanco.tb_produto.ToList();
+            List <tb_produto> LstRetorno = objBanco.tb_produto.ToList();
 
             return LstRetorno;
         }

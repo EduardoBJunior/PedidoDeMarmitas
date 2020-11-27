@@ -13,35 +13,35 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AgiliFood.Controllers
 {
-    public class FornecedorController : Controller
+    public class FuncionarioController : Controller
     {
         private void MontarTitulo(int tipoPag)
         {
             switch (tipoPag)
             {
                 case 1:
-                    ViewBag.Titulo = "Novo Fornecedor";
-                    ViewBag.Subtitulo = "Cadastre os Fornecedores aqui";
+                    ViewBag.Titulo = "Novo Funcionario";
+                    ViewBag.Subtitulo = "Cadastre os Funcionarioes aqui";
 
                     break;
                 case 2:
-                    ViewBag.Titulo = "Alterar ou Inativar Fornecedor";
-                    ViewBag.Subtitulo = "Altere os dados do fornecedor ou inative-o";
+                    ViewBag.Titulo = "Alterar ou Inativar Funcionario";
+                    ViewBag.Subtitulo = "Altere os dados do Funcionario ou inative-o";
                     break;
                 case 3:
-                    ViewBag.Titulo = "Consultar Fornecedor";
-                    ViewBag.Subtitulo = "Aqui poderá consultar os fornecedores cadastrados e cadastrar os Cardapios";
+                    ViewBag.Titulo = "Consultar Funcionario";
+                    ViewBag.Subtitulo = "Aqui poderá consultar os funcionarioes cadastrados e cadastrar os Cardapios";
                     break;
             }
         }
 
-        // GET: Fornecedor
+        // GET: Funcionario
         public ActionResult Cadastrar()
         {
             MontarTitulo(1);
             return View();
         }
-        public ActionResult Alterar(string cod, string nome, string telefone, string endereco, string ativo)
+        public ActionResult Alterar(string cod, string nome, string telefone, string endereco)
         {
             MontarTitulo(2);
 
@@ -49,14 +49,14 @@ namespace AgiliFood.Controllers
             @ViewBag.nome = nome;
             @ViewBag.telefone = telefone;
             @ViewBag.endereco = endereco;
-            @ViewBag.ativo = ativo;
+           
             return View();
         }
 
-        public ActionResult ConsultarFornecedor()
+        public ActionResult ConsultarFuncionario()
         {
             MontarTitulo(3);
-            CarregarFornecedores();
+            CarregarFuncionarios();
             return View();
         }
 
@@ -70,17 +70,17 @@ namespace AgiliFood.Controllers
             else
             {
 
-                tb_fornecedor objFornecedor = new tb_fornecedor();
-                FornecedorDAO ObjDao = new FornecedorDAO();
+                tb_funcionario objFuncionario = new tb_funcionario();
+                FuncionarioDAO ObjDao = new FuncionarioDAO();
 
-                objFornecedor.nome_fornecedor = Nome;
-                objFornecedor.telefone_fornecedor = telefone;
-                objFornecedor.endereco_fornecedor = endereco;
-                objFornecedor.status_fornecedor = 1;
+                objFuncionario.nome_funcionario = Nome;
+                objFuncionario.telefone_funcionario = telefone;
+                objFuncionario.endereco_funcionario = endereco;
+                
 
                 try
                 {
-                    ObjDao.InserirFornecedor(objFornecedor);
+                    ObjDao.InserirFuncionario(objFuncionario);
                     ViewBag.Ret = 1;
                     ViewBag.Msg = Mensagens.Msg.MsgSucesso;
                 }
@@ -94,26 +94,26 @@ namespace AgiliFood.Controllers
             MontarTitulo(1);
             return View("Cadastrar");
         }
-        public void CarregarFornecedores()
+        public void CarregarFuncionarios()
         {
-            FornecedorDAO objDao = new FornecedorDAO();
-            List<tb_fornecedor> lst = objDao.ConsultarFornecedores();
+            FuncionarioDAO objDao = new FuncionarioDAO();
+            List<tb_funcionario> lst = objDao.ConsultarFuncionario();
 
 
-            ViewBag.LstFornecedores = lst;
+            ViewBag.LstFuncionarioes = lst;
         }
 
-        public ActionResult Atualizar(string cod, string nome, string telelefone, string endereco, string ativo)
+        public ActionResult Atualizar(string cod, string nome, string telelefone, string endereco)
         {
            
-            FornecedorDAO objdao = new FornecedorDAO();
-            tb_fornecedor objFornAtualizado = new tb_fornecedor();
+            FuncionarioDAO objdao = new FuncionarioDAO();
+            tb_funcionario objFornAtualizado = new tb_funcionario();
 
-            objFornAtualizado.id_fornecedor = Convert.ToInt32(cod);
-            objFornAtualizado.nome_fornecedor = nome;
-            objFornAtualizado.telefone_fornecedor = telelefone;
-            objFornAtualizado.endereco_fornecedor = endereco;
-            objFornAtualizado.status_fornecedor = Convert.ToInt32(ativo);
+            objFornAtualizado.id_funcionario = Convert.ToInt32(cod);
+            objFornAtualizado.nome_funcionario = nome;
+            objFornAtualizado.telefone_funcionario = telelefone;
+            objFornAtualizado.endereco_funcionario = endereco;
+            
 
             if (cod == null)
             {
@@ -127,10 +127,10 @@ namespace AgiliFood.Controllers
                     try
                     {
 
-                        objdao.AlterarFornecedor(objFornAtualizado);
+                        objdao.AlterarFuncionario(objFornAtualizado);
 
                         MontarTitulo(3);
-                        CarregarFornecedores();
+                        CarregarFuncionarios();
 
                         ViewBag.Ret = 1;
                         ViewBag.Msg = Mensagens.Msg.MsgSucesso;
@@ -150,7 +150,7 @@ namespace AgiliFood.Controllers
 
             }
 
-            return View("ConsultarFornecedor");
+            return View("ConsultarFuncionario");
         }
     }
 }

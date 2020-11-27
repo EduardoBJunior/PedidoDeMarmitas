@@ -26,7 +26,7 @@ namespace DAO
 
             tb_fornecedor objResgate = objBanco.tb_fornecedor.Where(forn => forn.id_fornecedor == objForneAtualizado.id_fornecedor).FirstOrDefault();
 
-            
+            objResgate.id_fornecedor = objForneAtualizado.id_fornecedor;
             objResgate.nome_fornecedor = objForneAtualizado.nome_fornecedor;
             objResgate.telefone_fornecedor = objForneAtualizado.telefone_fornecedor;
             objResgate.endereco_fornecedor = objForneAtualizado.endereco_fornecedor;

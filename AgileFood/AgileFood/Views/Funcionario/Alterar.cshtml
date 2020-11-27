@@ -5,7 +5,7 @@
 }
 
     
-    @using (Html.BeginForm("Atualizar", "Fornecedor", FormMethod.Post))
+    @using (Html.BeginForm("Atualizar", "Funcionario", FormMethod.Post))
     {
     <div class="form-group">
         <input class="form-control" name="cod" value="@ViewBag.cod" />
@@ -16,20 +16,8 @@
         <label>Endereço </label>
         <input class="form-control" placeholder="Digite aqui!" name="endereco" maxlength="100" value="@ViewBag.endereco">
         <hr>
-        @if (ViewBag.ativo == "0")
-        {
-            <div class="checkbox">
-                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo">Ativo</label>
-            </div>
-        }@if (ViewBag.ativo == "1")
-        {
-            <div class="checkbox">
-                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo" checked>Ativo</label>
-            </div>
-        }
-
-        <hr>
-        <button type="submit" class="btn btn-success" >Salvar</button>
+         <button type="submit" class="btn btn-success" name="alterar" >Salvar</button>
+         <button type="submit" class="btn btn-success" name="exluir" >Excluir</button>
     </div>
      }
 

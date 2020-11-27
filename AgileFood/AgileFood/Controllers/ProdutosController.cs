@@ -36,9 +36,16 @@ namespace AgiliFood.Controllers
             MontarTitulo(1);
             return View();
         }
-        public ActionResult Alterar()
+        public ActionResult Alterar(string cod, string nome, string codigo,string preco, string status)
         {
             MontarTitulo(2);
+
+            @ViewBag.cod = cod;
+            @ViewBag.nome = nome;
+            @ViewBag.codigo = codigo;
+            @ViewBag.preco = preco;
+            @ViewBag.status = status;
+
             return View();
         }
 
@@ -92,42 +99,56 @@ namespace AgiliFood.Controllers
             ViewBag.LstProdutos = lst;
         }
 
-        public ActionResult AlterarProduto(tb_produto objProdAtualizado)
+        public ActionResult AlterarProduto(string cod,string codigo, string nome, string preco, string status)
         {
-            if (objProdAtualizado.codigo_produto.Trim() == "" || objProdAtualizado.nome_produto.Trim() == "" || objProdAtualizado.preco_produto == 0)
-            {
-                ViewBag.ret = 0;
-                ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
-            }
-            //if (objFornAtualizado.status_fornecedor != HtmlInputCheckBox)
-            //{
-            //    ViewBag.ret = 0;
-            //    ViewBag.msg = Mensagens.Msg.MsgInativarFornecedor;
-            //    objFornAtualizado.status_fornecedor = 0;
-            //}
-            AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_produto objResgate = objBanco.tb_produto.Where(prod => prod.id_produto == objProdAtualizado.id_produto).FirstOrDefault();
+            ProdutoDAO ObjDao = new ProdutoDAO();
+            tb_produto objProdAtualizado = new tb_produto();
 
+            objProdAtualizado.id_produto = Convert.ToInt32(cod);
+            objProdAtualizado.nome_produto = nome;
+            objProdAtualizado.codigo_produto = codigo;
+            objProdAtualizado.preco_produto = Convert.ToDecimal(preco);
+            objProdAtualizado.status_produto = Convert.ToInt32(status);
 
-            try
+            if (cod == null)
             {
-              
-                objBanco.SaveChanges();
-                ViewBag.Ret = 1;
-                ViewBag.Msg = Mensagens.Msg.MsgSucesso;
-            }
-            catch (Exception)
-            {
+                MontarTitulo(3);
                 ViewBag.Ret = -1;
-                ViewBag.Msg = Mensagens.Msg.MsgErro;
+                ViewBag.Msg = Mensagens.Msg.MensagemCampoObg;
             }
-         
+            else
+            {
+                try
+                {
 
-            objBanco.SaveChanges();
+                    ObjDao.AlterarProduto(objProdAtualizado);
 
-            return View("Alterar");
+                    MontarTitulo(3);
+                    CarregarProdutos();
+
+                    ViewBag.Ret = 1;
+                    ViewBag.Msg = Mensagens.Msg.MsgSucesso;
+                }
+                catch (Exception)
+                {
+
+                    ViewBag.Ret = -1;
+                    ViewBag.Msg = Mensagens.Msg.MsgErro;
+                }
+
+                ViewBag.Ret = 2;
+                ViewBag.Msg = Mensagens.Msg.MensagemCampoObg;
+            }
+
+
+
+            return View("Consultar");
+
         }
+
+            
+    
     }
 }
       

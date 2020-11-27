@@ -12,22 +12,23 @@ namespace DAO
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_funcionario
+    public partial class tb_pessoa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_funcionario()
+        public tb_pessoa()
         {
-            this.tb_pedidos = new HashSet<tb_pedidos>();
+            this.tb_fornecedor = new HashSet<tb_fornecedor>();
+            this.tb_funcionario = new HashSet<tb_funcionario>();
         }
     
-        public int id_funcionario { get; set; }
-        public string nome_funcionario { get; set; }
-        public string telefone_funcionario { get; set; }
-        public Nullable<int> id_pessoa { get; set; }
-        public string endereco_funcionario { get; set; }
+        public int id_pessoa { get; set; }
+        public string login_pessoa { get; set; }
+        public string senha_pessoa { get; set; }
+        public Nullable<int> tipo_pessoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_pedidos> tb_pedidos { get; set; }
-        public virtual tb_pessoa tb_pessoa { get; set; }
+        public virtual ICollection<tb_fornecedor> tb_fornecedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_funcionario> tb_funcionario { get; set; }
     }
 }

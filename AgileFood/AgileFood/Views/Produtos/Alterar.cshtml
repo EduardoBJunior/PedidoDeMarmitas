@@ -4,20 +4,29 @@
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
-@using (Html.BeginForm("Alterar", "Produtos", FormMethod.Post))
+@using (Html.BeginForm("AlterarProduto", "Produtos", FormMethod.Post))
 {
     <div class="form-group">
+        <input class="form-control" name="cod" value="@ViewBag.cod" />
         <label>Codigo </label>
-        <input class="form-control" placeholder="Digite aqui!" name="codigo" maxlength="14">
+        <input class="form-control" placeholder="Digite aqui!" name="codigo" maxlength="14" value="@ViewBag.codigo">
         <label>Nome </label>
-        <input class="form-control" placeholder="Digite aqui!" name="nome" maxlength="100">
+        <input class="form-control" placeholder="Digite aqui!" name="nome" maxlength="100" value="@ViewBag.nome">
         <label>Preço </label>
-        <input class="form-control" placeholder="Digite aqui!" name="preco" maxlength="18">
+        <input class="form-control" placeholder="Digite aqui!" name="preco" maxlength="18" value="@ViewBag.preco">
         <hr>
 
-        <div class="checkbox">
-            <label><input name="status" type="checkbox" value="1" checked="checked">Ativo</label>
-        </div>
+        @if (ViewBag.ativo == "0")
+        {
+            <div class="checkbox">
+                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo">Ativo</label>
+            </div>
+        }@if (ViewBag.ativo == "1")
+        {
+            <div class="checkbox">
+                <label><input name="ativo" type="checkbox" value="@ViewBag.ativo" checked>Ativo</label>
+            </div>
+        }
         <hr>
         <button type="submit" class="btn btn-success" name="Gravar">Alterar</button>
     </div>
