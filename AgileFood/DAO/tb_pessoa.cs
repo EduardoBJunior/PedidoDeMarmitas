@@ -17,8 +17,8 @@ namespace DAO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_pessoa()
         {
-            this.tb_fornecedor = new HashSet<tb_fornecedor>();
             this.tb_funcionario = new HashSet<tb_funcionario>();
+            this.tb_fornecedor = new HashSet<tb_fornecedor>();
         }
     
         public int id_pessoa { get; set; }
@@ -27,8 +27,8 @@ namespace DAO
         public Nullable<int> tipo_pessoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_fornecedor> tb_fornecedor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_funcionario> tb_funcionario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_fornecedor> tb_fornecedor { get; set; }
     }
 }

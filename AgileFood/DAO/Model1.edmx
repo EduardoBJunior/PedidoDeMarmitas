@@ -63,6 +63,7 @@
           <Property Name="nome_produto" Type="varchar" MaxLength="100" />
           <Property Name="preco_produto" Type="decimal" Precision="18" Scale="0" />
           <Property Name="status_produto" Type="int" />
+          <Property Name="id_fornecedor" Type="int" />
         </EntityType>
         <Association Name="FK_Cardapio">
           <End Role="tb_cardapio" Type="Self.tb_cardapio" Multiplicity="0..1" />
@@ -174,7 +175,6 @@
       <Schema Namespace="AgileFoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AgileFoodEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="tb_cardapio" EntityType="AgileFoodModel.tb_cardapio" />
-          <EntitySet Name="tb_fornecedor" EntityType="AgileFoodModel.tb_fornecedor" />
           <EntitySet Name="tb_funcionario" EntityType="AgileFoodModel.tb_funcionario" />
           <EntitySet Name="tb_pedidos" EntityType="AgileFoodModel.tb_pedidos" />
           <EntitySet Name="tb_pessoa" EntityType="AgileFoodModel.tb_pessoa" />
@@ -183,17 +183,9 @@
             <End Role="tb_cardapio" EntitySet="tb_cardapio" />
             <End Role="tb_pedidos" EntitySet="tb_pedidos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Fornecedor" Association="AgileFoodModel.FK_Fornecedor">
-            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
-            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
-          </AssociationSet>
           <AssociationSet Name="FK_Produto" Association="AgileFoodModel.FK_Produto">
             <End Role="tb_produto" EntitySet="tb_produto" />
             <End Role="tb_cardapio" EntitySet="tb_cardapio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tb_fornecedor_tb_pessoa" Association="AgileFoodModel.FK_tb_fornecedor_tb_pessoa">
-            <End Role="tb_pessoa" EntitySet="tb_pessoa" />
-            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
           </AssociationSet>
           <AssociationSet Name="FK_Funcionario" Association="AgileFoodModel.FK_Funcionario">
             <End Role="tb_funcionario" EntitySet="tb_funcionario" />
@@ -202,6 +194,15 @@
           <AssociationSet Name="FK_tb_funcionario_tb_pessoa" Association="AgileFoodModel.FK_tb_funcionario_tb_pessoa">
             <End Role="tb_pessoa" EntitySet="tb_pessoa" />
             <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+          </AssociationSet>
+          <EntitySet Name="tb_fornecedor" EntityType="AgileFoodModel.tb_fornecedor" />
+          <AssociationSet Name="FK_Fornecedor" Association="AgileFoodModel.FK_Fornecedor">
+            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
+            <End Role="tb_cardapio" EntitySet="tb_cardapio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_fornecedor_tb_pessoa" Association="AgileFoodModel.FK_tb_fornecedor_tb_pessoa">
+            <End Role="tb_pessoa" EntitySet="tb_pessoa" />
+            <End Role="tb_fornecedor" EntitySet="tb_fornecedor" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tb_cardapio">
@@ -212,21 +213,8 @@
           <Property Name="id_fornecedor" Type="Int32" />
           <Property Name="id_Produto" Type="Int32" />
           <NavigationProperty Name="tb_pedidos" Relationship="AgileFoodModel.FK_Cardapio" FromRole="tb_cardapio" ToRole="tb_pedidos" />
-          <NavigationProperty Name="tb_fornecedor" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_cardapio" ToRole="tb_fornecedor" />
           <NavigationProperty Name="tb_produto" Relationship="AgileFoodModel.FK_Produto" FromRole="tb_cardapio" ToRole="tb_produto" />
-        </EntityType>
-        <EntityType Name="tb_fornecedor">
-          <Key>
-            <PropertyRef Name="id_fornecedor" />
-          </Key>
-          <Property Name="id_fornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nome_fornecedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="telefone_fornecedor" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="endereco_fornecedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="id_pessoa" Type="Int32" />
-          <Property Name="status_fornecedor" Type="Int32" />
-          <NavigationProperty Name="tb_cardapio" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_fornecedor" ToRole="tb_cardapio" />
-          <NavigationProperty Name="tb_pessoa" Relationship="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" FromRole="tb_fornecedor" ToRole="tb_pessoa" />
+          <NavigationProperty Name="tb_fornecedor" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_cardapio" ToRole="tb_fornecedor" />
         </EntityType>
         <EntityType Name="tb_funcionario">
           <Key>
@@ -261,8 +249,8 @@
           <Property Name="login_pessoa" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="senha_pessoa" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="tipo_pessoa" Type="Int32" />
-          <NavigationProperty Name="tb_fornecedor" Relationship="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" FromRole="tb_pessoa" ToRole="tb_fornecedor" />
           <NavigationProperty Name="tb_funcionario" Relationship="AgileFoodModel.FK_tb_funcionario_tb_pessoa" FromRole="tb_pessoa" ToRole="tb_funcionario" />
+          <NavigationProperty Name="tb_fornecedor" Relationship="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" FromRole="tb_pessoa" ToRole="tb_fornecedor" />
         </EntityType>
         <EntityType Name="tb_produto">
           <Key>
@@ -274,6 +262,7 @@
           <Property Name="preco_produto" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="status_produto" Type="Int32" />
           <NavigationProperty Name="tb_cardapio" Relationship="AgileFoodModel.FK_Produto" FromRole="tb_produto" ToRole="tb_cardapio" />
+          <Property Name="id_fornecedor" Type="Int32" />
         </EntityType>
         <Association Name="FK_Cardapio">
           <End Type="AgileFoodModel.tb_cardapio" Role="tb_cardapio" Multiplicity="0..1" />
@@ -287,18 +276,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Fornecedor">
-          <End Type="AgileFoodModel.tb_fornecedor" Role="tb_fornecedor" Multiplicity="0..1" />
-          <End Type="AgileFoodModel.tb_cardapio" Role="tb_cardapio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_fornecedor">
-              <PropertyRef Name="id_fornecedor" />
-            </Principal>
-            <Dependent Role="tb_cardapio">
-              <PropertyRef Name="id_fornecedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Produto">
           <End Type="AgileFoodModel.tb_produto" Role="tb_produto" Multiplicity="0..1" />
           <End Type="AgileFoodModel.tb_cardapio" Role="tb_cardapio" Multiplicity="*" />
@@ -308,18 +285,6 @@
             </Principal>
             <Dependent Role="tb_cardapio">
               <PropertyRef Name="id_Produto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tb_fornecedor_tb_pessoa">
-          <End Type="AgileFoodModel.tb_pessoa" Role="tb_pessoa" Multiplicity="0..1" />
-          <End Type="AgileFoodModel.tb_fornecedor" Role="tb_fornecedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_pessoa">
-              <PropertyRef Name="id_pessoa" />
-            </Principal>
-            <Dependent Role="tb_fornecedor">
-              <PropertyRef Name="id_pessoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -347,6 +312,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tb_fornecedor">
+          <Key>
+            <PropertyRef Name="id_fornecedor" />
+          </Key>
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome_fornecedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefone_fornecedor" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="endereco_fornecedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_pessoa" Type="Int32" />
+          <Property Name="status_fornecedor" Type="Int32" />
+          <NavigationProperty Name="tb_cardapio" Relationship="AgileFoodModel.FK_Fornecedor" FromRole="tb_fornecedor" ToRole="tb_cardapio" />
+          <NavigationProperty Name="tb_pessoa" Relationship="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" FromRole="tb_fornecedor" ToRole="tb_pessoa" />
+        </EntityType>
+        <Association Name="FK_Fornecedor">
+          <End Type="AgileFoodModel.tb_fornecedor" Role="tb_fornecedor" Multiplicity="0..1" />
+          <End Type="AgileFoodModel.tb_cardapio" Role="tb_cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_fornecedor">
+              <PropertyRef Name="id_fornecedor" />
+            </Principal>
+            <Dependent Role="tb_cardapio">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_fornecedor_tb_pessoa">
+          <End Type="AgileFoodModel.tb_pessoa" Role="tb_pessoa" Multiplicity="0..1" />
+          <End Type="AgileFoodModel.tb_fornecedor" Role="tb_fornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pessoa">
+              <PropertyRef Name="id_pessoa" />
+            </Principal>
+            <Dependent Role="tb_fornecedor">
+              <PropertyRef Name="id_pessoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -359,18 +361,6 @@
                 <ScalarProperty Name="id_Produto" ColumnName="id_Produto" />
                 <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
                 <ScalarProperty Name="id_cardapio" ColumnName="id_cardapio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_fornecedor">
-            <EntityTypeMapping TypeName="AgileFoodModel.tb_fornecedor">
-              <MappingFragment StoreEntitySet="tb_fornecedor">
-                <ScalarProperty Name="status_fornecedor" ColumnName="status_fornecedor" />
-                <ScalarProperty Name="id_pessoa" ColumnName="id_pessoa" />
-                <ScalarProperty Name="endereco_fornecedor" ColumnName="endereco_fornecedor" />
-                <ScalarProperty Name="telefone_fornecedor" ColumnName="telefone_fornecedor" />
-                <ScalarProperty Name="nome_fornecedor" ColumnName="nome_fornecedor" />
-                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -410,11 +400,24 @@
           <EntitySetMapping Name="tb_produto">
             <EntityTypeMapping TypeName="AgileFoodModel.tb_produto">
               <MappingFragment StoreEntitySet="tb_produto">
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
                 <ScalarProperty Name="status_produto" ColumnName="status_produto" />
                 <ScalarProperty Name="preco_produto" ColumnName="preco_produto" />
                 <ScalarProperty Name="nome_produto" ColumnName="nome_produto" />
                 <ScalarProperty Name="codigo_produto" ColumnName="codigo_produto" />
                 <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_fornecedor">
+            <EntityTypeMapping TypeName="AgileFoodModel.tb_fornecedor">
+              <MappingFragment StoreEntitySet="tb_fornecedor">
+                <ScalarProperty Name="status_fornecedor" ColumnName="status_fornecedor" />
+                <ScalarProperty Name="id_pessoa" ColumnName="id_pessoa" />
+                <ScalarProperty Name="endereco_fornecedor" ColumnName="endereco_fornecedor" />
+                <ScalarProperty Name="telefone_fornecedor" ColumnName="telefone_fornecedor" />
+                <ScalarProperty Name="nome_fornecedor" ColumnName="nome_fornecedor" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

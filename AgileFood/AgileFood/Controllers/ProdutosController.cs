@@ -80,7 +80,7 @@ namespace AgiliFood.Controllers
                     ViewBag.Ret = 1;
                     ViewBag.Msg = Mensagens.Msg.MsgSucesso;
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                     ViewBag.Ret = -1;
