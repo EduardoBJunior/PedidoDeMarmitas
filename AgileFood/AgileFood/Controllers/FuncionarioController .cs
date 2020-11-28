@@ -1,5 +1,4 @@
 ﻿using DAO;
-using AgileFood.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +99,7 @@ namespace AgiliFood.Controllers
             List<tb_funcionario> lst = objDao.ConsultarFuncionario();
 
 
-            ViewBag.LstFuncionarioes = lst;
+            ViewBag.LstFuncionario = lst;
         }
 
         public ActionResult Atualizar(string cod, string nome, string telelefone, string endereco)
