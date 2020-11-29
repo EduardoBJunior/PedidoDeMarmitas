@@ -54,29 +54,35 @@ namespace AgiliFood.Controllers
             @ViewBag.ativo = ativo;
             return View();
         }
-        public ActionResult ConsultarFornecedor(string fornecedor)
+        public ActionResult ConsultarFornecedor()
         {
             MontarTitulo(3);
-            ViewBag.fornecedor = fornecedor;
+          
             CarregarFornecedores();
             
             return View();
         }
 
         //GET: Cardapio
-        public ActionResult CadastrarCardapio(string cod, string nome, string codigo, string preco, string status,string fornecedor)
+        public ActionResult CadastrarCardapio(string cod,  string status,string fornecedor)
         {
-            ViewBag.fonecedor = fornecedor;
+            
 
-            GravarProduto(codigo, nome,preco,fornecedor);
+            
 
             return View("Cardapio");
         }
-        public ActionResult Cardapio(string fornecedor)
+        public ActionResult Cardapio(string fornecedor, string nome, string codigo, string preco)
         {
             CarregarProdutos(fornecedor);
-
             
+            if (nome != null && codigo != null && preco != null)
+            {
+                GravarProduto(codigo, nome, preco, fornecedor);
+            }
+           
+
+
             return View();
         }
 

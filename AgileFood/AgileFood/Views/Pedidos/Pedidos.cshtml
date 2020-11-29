@@ -12,13 +12,25 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Selecione o Fornecedor</label>
                 <select class="form-control">
-                    <option>1</option>
+                    @foreach (var item in ViewBag.LstFornecedores)
+                    {
+                        ViewBag.fornecedor = item.id_fornecedor;
+
+                        <option>@item.nome_fornecedor</option>
+
+                    }
                 </select>
+
             </div>
             <div class="form-group">
                 <label class="col-form-label">Selecione o Produto</label>
                 <select class="form-control">
-                    <option>1</option>
+                    @foreach (var item in ViewBag.LstProdutos)
+                    {
+
+                        <option>@item.nome_produto</option>
+
+                    }
                 </select>
             </div>
             <button type="submit" class="btn btn-success" name="adicionar">Adicionar</button>
@@ -28,7 +40,7 @@
     <div class="row">
         <div class="panel panel-body">
             <div class="panel-heading">
-                Advanced Tables
+                Itendo do Pedido
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -38,8 +50,8 @@
                                 <th>Nome do Produto</th>
                                 <th>Quantidade</th>
                                 <th>Valor</th>
-                                
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +60,7 @@
                                 <td>Internet Explorer 4.0</td>
                                 <td>Win 95+</td>
                             </tr>
-                        
+
 
                         </tbody>
                     </table>

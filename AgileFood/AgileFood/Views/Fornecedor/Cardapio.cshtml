@@ -2,13 +2,14 @@
 @{
     ViewBag.Title = "Cardapio";
     Layout = "~/Views/Shared/_layout.cshtml";
+    string _fornecedor = Request.QueryString["fornecedor"];
 }
 
-<form action=" @Url.Action("CadastrarCardapio", "Fornecedor")" method="POST">
+<form action=" @Url.Action("Cardapio", "Fornecedor")" method="POST">
     <div class="row">
 
         <div class="form-group">
-            <input type="hidden" class="form-control" name="fornecedor" value="@ViewBag.fornecedor" />
+            <input type="hidden" class="form-control" name="fornecedor" value="@_fornecedor" />
             <label>Codigo </label>
             <input class="form-control" placeholder="Digite aqui!" name="codigo" maxlength="14">
             <label>Nome </label>
