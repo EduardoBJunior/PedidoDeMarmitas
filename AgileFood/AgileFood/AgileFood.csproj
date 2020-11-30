@@ -282,6 +282,7 @@
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\Fornecedor\Cardapio.cshtml" />
+    <Content Include="Views\Pedidos\CarregarFornecedores.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -291,7 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cardapio\" />
     <Folder Include="Views\RhFinanceiro\" />
   </ItemGroup>
   <ItemGroup>

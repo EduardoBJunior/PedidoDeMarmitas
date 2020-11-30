@@ -2,71 +2,32 @@
 @{
 
     Layout = "~/Views/Shared/_layout.cshtml";
+    
+
+
 }
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Selecione o fornecedor e o produto que deseja, e adicione ao pedido
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlSelect1">Selecione o Fornecedor</label>
-                <select class="form-control">
-                    @foreach (var item in ViewBag.LstFornecedores)
-                    {
-                        ViewBag.fornecedor = item.id_fornecedor;
-
-                        <option>@item.nome_fornecedor</option>
-
-                    }
-                </select>
-
-            </div>
-            <div class="form-group">
-                <label class="col-form-label">Selecione o Produto</label>
-                <select class="form-control">
-                    @foreach (var item in ViewBag.LstProdutos)
-                    {
-
-                        <option>@item.nome_produto</option>
-
-                    }
-                </select>
-            </div>
-            <button type="submit" class="btn btn-success" name="adicionar">Adicionar</button>
-        </div>
-    </div>
-
+<form action=" @Url.Action("Pedidos", "Pedidos")" method="POST">
     <div class="row">
-        <div class="panel panel-body">
-            <div class="panel-heading">
-                Itendo do Pedido
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <tr>
-                                <th>Nome do Produto</th>
-                                <th>Quantidade</th>
-                                <th>Valor</th>
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="odd gradeX">
-                                <td>Trident</td>
-                                <td>Internet Explorer 4.0</td>
-                                <td>Win 95+</td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Selecione o fornecedor
                 </div>
+                <div class="form-group">
+                    <label >Selecione o Fornecedor</label>
+                    <select  name="lista_fornecedores" class="form-control">
+                        @foreach (var item in ViewBag.LstFornecedores)
+                        {
+                            ViewBag.fornecedor = item.id_fornecedor;
 
+                            <option onselect="@item.id_fornecedor">@item.nome_fornecedor</option>
+
+                        }
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+</form>
+
+
+

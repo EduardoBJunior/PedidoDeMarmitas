@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AgileFood.Models;
 using DAO;
 
 namespace AgileFood.Controllers
@@ -10,14 +11,22 @@ namespace AgileFood.Controllers
     public class PedidosController : Controller
     {
         // GET: Pedidos
-        public ActionResult Pedidos()
+        public ActionResult Pedidos(string fornecedor)
         {
-            string fornecedor = "1";
 
+           
             CarregarFornecedores();
-            ConsultarProdutos(fornecedor);
+
+
 
             return View();
+        }
+
+        public ActionResult Produtos(string fornecedor)
+        {
+            ConsultarProdutos(fornecedor);
+
+            return View("Pedidos");
         }
 
         public void CarregarFornecedores()
@@ -30,7 +39,7 @@ namespace AgileFood.Controllers
         }
         public void ConsultarProdutos(string fornecedor)
         {
-            if (fornecedor == null)
+            if (fornecedor == null )
             {
 
             }
