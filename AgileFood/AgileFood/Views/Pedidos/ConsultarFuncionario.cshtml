@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "ConsultarFuncionario";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>ConsultarFuncionario</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Listagem de Funcionarios 
+
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Nome do Colaborador</th>
+                        <th>Telefone</th>
+                        <th>Edereço</th>
+                        <th>Ação</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.LstFuncionario)
+                    {
+                    <tr class="odd gradeX">
+
+                        <td>@item.nome_funcionario</td>
+                        <td>@item.telefone_funcionario</td>
+                        <td>@item.endereco_funcionario</td>
+
+
+                        @*<td><a href="/Funcionario/Alterar?cod=@item.id_funcionario&nome=@item.nome_funcionario&telefone=@item.telefone_funcionario&endereco=@item.endereco_funcionario" class="btn btn-warning">Alterar</a></td>*@
+
+
+                        <td><a href="/Pedidos/CarregarFornecedores?funcionario=@item.id_funcionario" class="btn btn-warning">Selecionar Fornecedor</a></td>
+
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+

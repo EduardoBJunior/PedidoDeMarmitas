@@ -1,33 +1,61 @@
 ﻿
 @{
-
+    ViewBag.Title = "Cardapio";
     Layout = "~/Views/Shared/_layout.cshtml";
-    
-
-
+    string _id_produto = "0";
 }
-<form action=" @Url.Action("Pedidos", "Pedidos")" method="POST">
+
+
+<form action=" @Url.Action("CarregarFornecedores", "Pedidos")" method="POST">
     <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Selecione o fornecedor
-                </div>
-                <div class="form-group">
-                    <label >Selecione o Fornecedor</label>
-                    <select  name="lista_fornecedores" class="form-control">
-                        @foreach (var item in ViewBag.LstFornecedores)
-                        {
-                            ViewBag.fornecedor = item.id_fornecedor;
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Produtos Cadastrados
 
-                            <option onselect="@item.id_fornecedor">@item.nome_fornecedor</option>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome do Produto</th>
+                                <th>Preço</th>
+                                <th>Quantidade</th>
+                                
 
-                        }
-                    </select>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.LstProdutos)
+                            {
+
+                                <tr class="odd gradeX">
+
+                                    <td>@item.codigo_produto</td>
+                                    <td>@item.nome_produto</td>
+                                    <td>@item.preco_produto</td>
+                                    <td><input name="quantidade" class=form-control value="0" /></td>
+
+                                </tr>
+
+
+                            }
+                            @*<a href="~/Produtos/Alterar?cod=@item.id_produto&codigo=@item.codigo_produto&nome=@item.nome_produto&preco=@item.preco_produto&status=@item.status_produto" class="btn btn-warning">Alterar</a>*@
+                            <button type="submit" class="btn btn-success" name="AdcionarItens">Salvar Pedido</button>
+
+                        </tbody>
+
+
+                    </table>
+                    <hr>
+                   
                 </div>
+
             </div>
         </div>
 </form>
 
 
 
+</div>

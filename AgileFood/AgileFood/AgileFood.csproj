@@ -283,6 +283,7 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\Fornecedor\Cardapio.cshtml" />
     <Content Include="Views\Pedidos\CarregarFornecedores.cshtml" />
+    <Content Include="Views\Pedidos\ConsultarFuncionario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
