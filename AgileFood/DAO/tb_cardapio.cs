@@ -24,9 +24,9 @@ namespace DAO
         public Nullable<int> id_fornecedor { get; set; }
         public Nullable<int> id_Produto { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_pedidos> tb_pedidos { get; set; }
         public virtual tb_produto tb_produto { get; set; }
         public virtual tb_fornecedor tb_fornecedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_pedidos> tb_pedidos { get; set; }
     }
 }

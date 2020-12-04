@@ -23,9 +23,14 @@ namespace AgileFood.Controllers
 
             return View();
         }
-        public ActionResult Pedidos(string fornecedor)
+        public ActionResult Pedidos(string fornecedor,string funcionario, string id_pedido, string nomePord,string  precoProd, string qtdPedido)
         {
             ConsultarProdutos(fornecedor);
+
+            if (qtdPedido !="0")
+            {
+                CadastrarPedido( fornecedor,  funcionario,  id_pedido,  nomePord,   precoProd,  qtdPedido);
+            }
 
             return View();
         }
@@ -79,38 +84,41 @@ namespace AgileFood.Controllers
 
             ViewBag.LstFuncionario = lst;
         }
-        //public void RegistrarPedido()
-        //{
-        //    if (Nome.Trim() == "" || telefone.Trim() == "" || endereco.Trim() == "")
-        //    {
-        //        ViewBag.ret = 0;
-        //        ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
-        //    }
-        //    else
-        //    {
+        public void CadastrarPedido(string fornecedor, string funcionario, string idPedido, string nomePord, string precoProd, string qtdPedido)
+        {
+            //if (fornecedor.Trim() == "" || funcionario.Trim() == "" || qtdPedido.Trim() == "")
+            //{
+            //    ViewBag.ret = 0;
+            //    ViewBag.msg = Mensagens.Msg.MensagemCampoObg;
+            //}
+            //else
+            //{
 
-        //        tb_pedidos objPrdido = new tb_pedidos();
-        //        FornecedorDAO ObjDao = new FornecedorDAO();
+                tb_pedidos objPedido = new tb_pedidos();
+                PedidoDAO ObjDao = new PedidoDAO();
 
-        //        objFornecedor.nome_fornecedor = Nome;
-        //        objFornecedor.telefone_fornecedor = telefone;
-        //        objFornecedor.endereco_fornecedor = endereco;
-        //        objFornecedor.status_fornecedor = 1;
+                objPedido.id_funcionario = Convert.ToInt32(fornecedor);
+                objPedido.id_fornecedor = Convert.ToInt32(fornecedor);
+                objPedido.id_produto = Convert.ToInt32(idPedido);
+                objPedido.qtProdu_pedidos = Convert.ToInt32(qtdPedido);
+                objPedido.valorTotal_pedido = (Convert.ToInt32(qtdPedido) * Convert.ToDecimal(precoProd));
 
-        //        try
-        //        {
-        //            ObjDao.InserirFornecedor(objFornecedor);
-        //            ViewBag.Ret = 1;
-        //            ViewBag.Msg = Mensagens.Msg.MsgSucesso;
-        //        }
-        //        catch (Exception)
-        //        {
+               
 
-        //            ViewBag.Ret = -1;
-        //            ViewBag.Msg = Mensagens.Msg.MsgErro;
-        //        }
-        //    }
-        //    MontarTitulo(1);
-        //}
+                try
+                {
+                    ObjDao.InserirPedido(objPedido);
+                    ViewBag.Ret = 1;
+                    ViewBag.Msg = Mensagens.Msg.MsgSucesso;
+                }
+                catch (Exception)
+                {
+
+                    ViewBag.Ret = -1;
+                    ViewBag.Msg = Mensagens.Msg.MsgErro;
+                }
+            //}
+            
+        }
     }
 }

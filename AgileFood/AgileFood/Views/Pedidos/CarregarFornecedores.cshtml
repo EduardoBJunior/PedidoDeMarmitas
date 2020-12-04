@@ -2,6 +2,8 @@
 @{
 
     Layout = "~/Views/Shared/_layout.cshtml";
+    string _funcionario = Request.QueryString["funcionario"];
+
 }
 
 <div class="panel panel-default">
@@ -38,7 +40,7 @@
 
                         
 
-                        <td><a href="/Pedidos/Pedidos?fornecedor=@item.id_fornecedor" class="btn btn-warning">Pedir</a></td>
+                        <td><a href="/Pedidos/Pedidos?fornecedor=@item.id_fornecedor&funcionario =@_funcionario" class="btn btn-warning">Pedir</a></td>
                         
                         <td><a href="/Pedidos/Alterar?cod=@item.id_fornecedor&nome=@item.nome_fornecedor&telefone=@item.telefone_fornecedor&endereco=@item.endereco_fornecedor&ativo=@item.status_fornecedor" class="btn btn-warning">Alterar</a></td>
 

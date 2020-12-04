@@ -20,8 +20,10 @@ namespace DAO
         public Nullable<decimal> valorTotal_pedido { get; set; }
         public Nullable<int> id_funcionario { get; set; }
         public Nullable<int> id_cardapio { get; set; }
+        public Nullable<int> id_fornecedor { get; set; }
     
         public virtual tb_cardapio tb_cardapio { get; set; }
+        public virtual tb_fornecedor tb_fornecedor { get; set; }
         public virtual tb_funcionario tb_funcionario { get; set; }
     }
 }

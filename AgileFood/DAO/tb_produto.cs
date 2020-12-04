@@ -29,5 +29,6 @@ namespace DAO
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_cardapio> tb_cardapio { get; set; }
+        public virtual tb_fornecedor tb_fornecedor { get; set; }
     }
 }

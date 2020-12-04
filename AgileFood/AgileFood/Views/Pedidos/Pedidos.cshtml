@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Cardapio";
     Layout = "~/Views/Shared/_layout.cshtml";
-    string _id_produto = "0";
+    string _fornecedor = Request.QueryString["fornecedor"];
+    string _funcionario = Request.QueryString["funcionario"];
 }
 
 
@@ -13,6 +14,8 @@
                 Produtos Cadastrados
 
             </div>
+            <input name="fornecedor" class=form-control value=@_fornecedor />
+            <input name="funcionario" class=form-control value=@_funcionario />
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -22,7 +25,7 @@
                                 <th>Nome do Produto</th>
                                 <th>Preço</th>
                                 <th>Quantidade</th>
-                                
+
 
                             </tr>
                         </thead>
@@ -32,24 +35,24 @@
 
                                 <tr class="odd gradeX">
 
-                                    <td>@item.codigo_produto</td>
-                                    <td>@item.nome_produto</td>
-                                    <td>@item.preco_produto</td>
-                                    <td><input name="quantidade" class=form-control value="0" /></td>
+                                    <td nome="codprod">@item.codigo_produto</td>
+                                    <td nome="nomePord">@item.nome_produto</td>
+                                    <td nome="precoProd">@item.preco_produto</td>
+                                    <td><input name="qtdPedido" class=form-control value="0" /></td>
 
                                 </tr>
 
 
                             }
-                            @*<a href="~/Produtos/Alterar?cod=@item.id_produto&codigo=@item.codigo_produto&nome=@item.nome_produto&preco=@item.preco_produto&status=@item.status_produto" class="btn btn-warning">Alterar</a>*@
-                            <button type="submit" class="btn btn-success" name="AdcionarItens">Salvar Pedido</button>
+
 
                         </tbody>
 
 
                     </table>
                     <hr>
-                   
+
+                    <button type="submit" class="btn btn-success" name="AdcionarItens">Salvar Pedido</button>
                 </div>
 
             </div>

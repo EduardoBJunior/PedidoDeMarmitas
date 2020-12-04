@@ -7,16 +7,18 @@
       <Diagram DiagramId="46f4e024867d49b18ac089d7ce0182b2" Name="Diagram1">
         <EntityTypeShape EntityType="AgileFoodModel.tb_cardapio" Width="1.5" PointX="6.25" PointY="4.375" />
         <EntityTypeShape EntityType="AgileFoodModel.tb_funcionario" Width="1.5" PointX="4" PointY="1.125" />
-        <EntityTypeShape EntityType="AgileFoodModel.tb_pedidos" Width="1.5" PointX="6.5" PointY="1.125" />
         <EntityTypeShape EntityType="AgileFoodModel.tb_pessoa" Width="1.5" PointX="1.75" PointY="2.875" />
         <EntityTypeShape EntityType="AgileFoodModel.tb_produto" Width="1.5" PointX="8.875" PointY="4.25" />
-        <AssociationConnector Association="AgileFoodModel.FK_Cardapio" />
         <AssociationConnector Association="AgileFoodModel.FK_Produto" />
-        <AssociationConnector Association="AgileFoodModel.FK_Funcionario" />
         <AssociationConnector Association="AgileFoodModel.FK_tb_funcionario_tb_pessoa" />
         <EntityTypeShape EntityType="AgileFoodModel.tb_fornecedor" Width="1.5" PointX="4" PointY="4.625" />
         <AssociationConnector Association="AgileFoodModel.FK_Fornecedor" />
         <AssociationConnector Association="AgileFoodModel.FK_tb_fornecedor_tb_pessoa" />
+        <EntityTypeShape EntityType="AgileFoodModel.tb_pedidos" Width="1.5" PointX="8.5" PointY="0.75" />
+        <AssociationConnector Association="AgileFoodModel.FK_Cardapio" />
+        <AssociationConnector Association="AgileFoodModel.FK_tb_pedidos_tb_fornecedor" />
+        <AssociationConnector Association="AgileFoodModel.FK_tb_produto_tb_fornecedor1" />
+        <AssociationConnector Association="AgileFoodModel.FK_Funcionario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

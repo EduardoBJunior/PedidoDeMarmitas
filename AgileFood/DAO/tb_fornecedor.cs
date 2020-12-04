@@ -18,6 +18,8 @@ namespace DAO
         public tb_fornecedor()
         {
             this.tb_cardapio = new HashSet<tb_cardapio>();
+            this.tb_pedidos = new HashSet<tb_pedidos>();
+            this.tb_produto = new HashSet<tb_produto>();
         }
     
         public int id_fornecedor { get; set; }
@@ -30,5 +32,9 @@ namespace DAO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_cardapio> tb_cardapio { get; set; }
         public virtual tb_pessoa tb_pessoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_pedidos> tb_pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_produto> tb_produto { get; set; }
     }
 }

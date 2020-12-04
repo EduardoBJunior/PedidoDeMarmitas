@@ -26,8 +26,8 @@ namespace DAO
         public Nullable<int> id_pessoa { get; set; }
         public string endereco_funcionario { get; set; }
     
+        public virtual tb_pessoa tb_pessoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_pedidos> tb_pedidos { get; set; }
-        public virtual tb_pessoa tb_pessoa { get; set; }
     }
 }

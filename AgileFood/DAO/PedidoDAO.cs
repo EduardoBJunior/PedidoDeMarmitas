@@ -9,34 +9,34 @@ namespace DAO
     public class PedidoDAO
     {
 
-        public void InserirProduto(tb_produto ObjProd)
+        public void InserirPedido(tb_pedidos ObjPed)
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            objBanco.tb_produto.Add(ObjProd);
+            objBanco.tb_pedidos.Add(ObjPed);
 
             objBanco.SaveChanges();
         }
 
-        public void AlterarProduto(tb_produto objProdAtualizado)
+        public void AlterarProduto(tb_pedidos objPedAtualizado)
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
 
-            tb_produto objResgate = objBanco.tb_produto.Where(prod => prod.id_produto == objProdAtualizado.id_produto).FirstOrDefault();
+            tb_pedidos objResgate = objBanco.tb_pedidos.Where(ped => ped.id_pedido == objPedAtualizado.id_produto).FirstOrDefault();
 
-            objResgate.id_produto = objProdAtualizado.id_produto;
-            objResgate.nome_produto = objProdAtualizado.nome_produto;
-            objResgate.codigo_produto = objProdAtualizado.codigo_produto;
-            objResgate.preco_produto = objProdAtualizado.preco_produto;
-            objResgate.status_produto = objProdAtualizado.status_produto;
+            objResgate.id_produto = objPedAtualizado.id_produto;
+            objResgate.id_funcionario = objPedAtualizado.id_funcionario;
+            objResgate.id_fornecedor = objPedAtualizado.id_fornecedor;
+            objResgate.qtProdu_pedidos = objPedAtualizado.qtProdu_pedidos;
+            objResgate.valorTotal_pedido = objPedAtualizado.valorTotal_pedido;
 
             objBanco.SaveChanges();
         }
 
-        public List<tb_produto> ConsultarProduto()
+        public List<tb_pedidos> ConsultarPedidos()
         {
             AgileFoodEntities objBanco = new AgileFoodEntities();
-            List<tb_produto> LstRetorno = objBanco.tb_produto.ToList();
+            List<tb_pedidos> LstRetorno = objBanco.tb_pedidos.ToList();
 
             return LstRetorno;
         }
